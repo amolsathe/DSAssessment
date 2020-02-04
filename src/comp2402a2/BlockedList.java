@@ -1,9 +1,6 @@
 package comp2402a2;
 
 import java.util.AbstractList;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 
 /**
  * @author morin
