@@ -35,33 +35,93 @@ public class SLList<T> extends AbstractList<T> implements Queue<T> {
 	int n;
 
 	public T get(int i) {
-		// TODO: Implement this
-		if (i < 0 || i > n - 1) throw new IndexOutOfBoundsException();
-		return null;
-	}
+        if (i < 0 || i > n - 1) throw new IndexOutOfBoundsException();
 
-	public T set(int i, T x) {
-		// TODO: Implement this
-		if (i < 0 || i > n - 1) throw new IndexOutOfBoundsException();
-		return null;
-	}
+        Node temp = head;
 
-	public void add(int i, T x) {
-		// TODO: Implement this
-		if (i < 0 || i > n) throw new IndexOutOfBoundsException();
-	}
+        for (int j=0; j < i; j++){
+            temp = temp.next;
+        }
+        return temp.x;
+    }
 
-	public T remove(int i) {
-		// TODO: Implement this
-		if (i < 0 || i > n - 1) throw new IndexOutOfBoundsException();
-		return null;
-	}
+    public T set(int i, T x) {
+        if (i < 0 || i > n - 1) throw new IndexOutOfBoundsException();
 
-	public void reverse() {
-		if (n == 0) 
-			return;
-			
-	}
+        Node temp = head;
+        for (int j=0; j < i; j++){
+            temp = temp.next;
+        }
+        temp.x = x;
+
+        return x;
+    }
+
+    public void add(int i, T x) {
+        if (i < 0 || i > n) throw new IndexOutOfBoundsException();
+
+        Node newNode = new Node();
+        newNode.x = x;
+
+        if ( i == 0 ){
+            newNode.next = head;
+            head = newNode;
+            return;
+        }
+
+        Node temp = head;
+        for (int j=1; j < i; j++){
+            temp = temp.next;
+        }
+
+        if (i == n){
+            tail = newNode;
+        }
+
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
+
+    public T remove(int i) {
+        if (i < 0 || i > n - 1) throw new IndexOutOfBoundsException();
+        T x;
+
+        if ( i == 0 ) {
+            x = head.x;
+            head = head.next;
+            return x;
+        }
+
+        Node temp = head, previous = null;
+        for (int j = 0; j < i; j++){
+            previous = temp;
+            temp = temp.next;
+        }
+
+        if (i == n-1) {
+            tail = previous;
+        }
+
+        x = temp.x;
+        previous.next = temp.next;
+        return x;
+    }
+
+    public void reverse() {
+        if (n == 0)
+            return;
+
+        tail = head;
+        Node previous = null, next = null;
+
+        while (head.next != null) {
+            next = head.next;
+            head.next = previous;
+            previous = head;
+            head = next;
+        }
+        head.next = previous;
+    }
 
 	public Iterator<T> iterator() {
 		class SLIterator implements Iterator<T> {
