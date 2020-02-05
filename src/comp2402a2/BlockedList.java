@@ -103,7 +103,7 @@ public class BlockedList<T> extends AbstractList<T> {
 			// make last element as null
 			elements[n - 1] = null;
 		}
-
+		n--;
 		return x;
 	}
 }

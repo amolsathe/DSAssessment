@@ -1,7 +1,9 @@
-package comp2402a2;
+package test;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
+
+import comp2402a2.Factory;
 
 /**
  * @author morin
